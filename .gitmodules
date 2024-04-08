@@ -1,0 +1,3 @@
+[submodule "lwsdk"]
+	path = lwsdk
+	url = git@github.com:Hyrtwol/lwsdk.git
