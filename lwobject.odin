@@ -20,59 +20,24 @@ WRAP_EDGE :: 1
 WRAP_REPEAT :: 2
 WRAP_MIRROR :: 3
 
-lwNode :: st_lwNode
-lwPlugin :: st_lwPlugin
-lwKey :: st_lwKey
-lwEnvelope :: st_lwEnvelope
-lwEParam :: st_lwEParam
-lwVParam :: st_lwVParam
-lwClipStill :: st_lwClipStill
-lwClipSeq :: st_lwClipSeq
-lwClipAnim :: st_lwClipAnim
-lwClipXRef :: st_lwClipXRef
-lwClipCycle :: st_lwClipCycle
-lwClip :: st_lwClip
-lwTMap :: st_lwTMap
-lwImageMap :: st_lwImageMap
-lwProcedural :: st_lwProcedural
-lwGradKey :: st_lwGradKey
-lwGradient :: st_lwGradient
-lwTexture :: st_lwTexture
-lwTParam :: st_lwTParam
-lwCParam :: st_lwCParam
-Glow :: st_lwGlow
-lwRMap :: st_lwRMap
-lwLine :: st_lwLine
-lwSurface :: st_lwSurface
-lwVMap :: st_lwVMap
-lwVMapPt :: st_lwVMapPt
-lwPoint :: st_lwPoint
-lwPolVert :: st_lwPolVert
-lwPolygon :: st_lwPolygon
-lwPointList :: st_lwPointList
-lwPolygonList :: st_lwPolygonList
-lwLayer :: st_lwLayer
-lwTagList :: st_lwTagList
-lwObject :: st_lwObject
-
-st_lwNode :: struct {
-	next: ^st_lwNode,
-	prev: ^st_lwNode,
+lwNode :: struct {
+	next: ^lwNode,
+	prev: ^lwNode,
 	data: rawptr,
 }
 
-st_lwPlugin :: struct {
-	next:  ^st_lwPlugin,
-	prev:  ^st_lwPlugin,
+lwPlugin :: struct {
+	next:  ^lwPlugin,
+	prev:  ^lwPlugin,
 	ord:   cstring,
 	name:  cstring,
 	flags: lwint,
 	data:  rawptr,
 }
 
-st_lwKey :: struct {
-	next:       ^st_lwKey,
-	prev:       ^st_lwKey,
+lwKey :: struct {
+	next:       ^lwKey,
+	prev:       ^lwKey,
 	value:      lwfloat,
 	time:       lwfloat,
 	shape:      lwuint,
@@ -82,9 +47,9 @@ st_lwKey :: struct {
 	param:      [4]lwfloat,
 }
 
-st_lwEnvelope :: struct {
-	next:      ^st_lwEnvelope,
-	prev:      ^st_lwEnvelope,
+lwEnvelope :: struct {
+	next:      ^lwEnvelope,
+	prev:      ^lwEnvelope,
 	index:     lwint,
 	type:      lwint,
 	name:      cstring,
@@ -95,21 +60,21 @@ st_lwEnvelope :: struct {
 	ncfilters: lwint,
 }
 
-st_lwEParam :: struct {
+lwEParam :: struct {
 	val:    lwfloat,
 	eindex: lwint,
 }
 
-st_lwVParam :: struct {
-	val:    [3]lwfloat,
+lwVParam :: struct {
+	val:    LWFVector,
 	eindex: lwint,
 }
 
-st_lwClipStill :: struct {
+lwClipStill :: struct {
 	name: cstring,
 }
 
-st_lwClipSeq :: struct {
+lwClipSeq :: struct {
 	prefix: cstring,
 	suffix: cstring,
 	digits: lwint,
@@ -119,15 +84,15 @@ st_lwClipSeq :: struct {
 	end:    lwint,
 }
 
-st_lwClipAnim :: struct {
+lwClipAnim :: struct {
 	name:   cstring,
 	server: cstring,
 	data:   rawptr,
 }
 
-st_lwClip :: struct {
-	next:       ^st_lwClip,
-	prev:       ^st_lwClip,
+lwClip :: struct {
+	next:       ^lwClip,
+	prev:       ^lwClip,
 	index:      lwint,
 	type:       lwuint,
 	source:     AnonymousUnion0,
@@ -146,19 +111,19 @@ st_lwClip :: struct {
 	npfilters:  lwint,
 }
 
-st_lwClipXRef :: struct {
+lwClipXRef :: struct {
 	string: cstring,
 	index:  lwint,
-	clip:   ^st_lwClip,
+	clip:   ^lwClip,
 }
 
-st_lwClipCycle :: struct {
+lwClipCycle :: struct {
 	name: cstring,
 	lo:   lwint,
 	hi:   lwint,
 }
 
-st_lwTMap :: struct {
+lwTMap :: struct {
 	size:       lwVParam,
 	center:     lwVParam,
 	rotate:     lwVParam,
@@ -168,7 +133,7 @@ st_lwTMap :: struct {
 	coord_sys:  lwint,
 }
 
-st_lwImageMap :: struct {
+lwImageMap :: struct {
 	cindex:      lwint,
 	projection:  lwint,
 	vmap_name:   cstring,
@@ -184,21 +149,21 @@ st_lwImageMap :: struct {
 	amplitude:   lwEParam,
 }
 
-st_lwProcedural :: struct {
+lwProcedural :: struct {
 	axis:  lwint,
-	value: [3]lwfloat,
+	value: LWFVector,
 	name:  cstring,
 	data:  rawptr,
 }
 
-st_lwGradKey :: struct {
-	next:  ^st_lwGradKey,
-	prev:  ^st_lwGradKey,
+lwGradKey :: struct {
+	next:  ^lwGradKey,
+	prev:  ^lwGradKey,
 	value: lwfloat,
 	rgba:  [4]lwfloat,
 }
 
-st_lwGradient :: struct {
+lwGradient :: struct {
 	paramname: cstring,
 	itemname:  cstring,
 	start:     lwfloat,
@@ -208,9 +173,9 @@ st_lwGradient :: struct {
 	ikey:      ^lwshort,
 }
 
-st_lwTexture :: struct {
-	next:      ^st_lwTexture,
-	prev:      ^st_lwTexture,
+lwTexture :: struct {
+	next:      ^lwTexture,
+	prev:      ^lwTexture,
 	ord:       cstring,
 	type:      lwuint,
 	chan:      lwuint,
@@ -223,41 +188,41 @@ st_lwTexture :: struct {
 	tmap:      lwTMap,
 }
 
-st_lwTParam :: struct {
+lwTParam :: struct {
 	val:    lwfloat,
 	eindex: lwint,
 	tex:    ^lwTexture,
 }
 
-st_lwCParam :: struct {
-	rgb:    [3]lwfloat,
+lwCParam :: struct {
+	rgb:    LWFVector,
 	eindex: lwint,
 	tex:    ^lwTexture,
 }
 
-st_lwGlow :: struct {
+lwGlow :: struct {
 	enabled:   lwshort,
 	type:      lwshort,
 	intensity: lwEParam,
 	size:      lwEParam,
 }
 
-st_lwRMap :: struct {
+lwRMap :: struct {
 	val:        lwTParam,
 	options:    lwint,
 	cindex:     lwint,
 	seam_angle: lwfloat,
 }
 
-st_lwLine :: struct {
+lwLine :: struct {
 	enabled: lwshort,
 	flags:   lwushort,
 	size:    lwEParam,
 }
 
-st_lwSurface :: struct {
-	next:         ^st_lwSurface,
-	prev:         ^st_lwSurface,
+lwSurface :: struct {
+	next:         ^lwSurface,
+	prev:         ^lwSurface,
 	name:         cstring,
 	srcname:      cstring,
 	color:        lwCParam,
@@ -284,9 +249,9 @@ st_lwSurface :: struct {
 	nshaders:     lwint,
 }
 
-st_lwVMap :: struct {
-	next:    ^st_lwVMap,
-	prev:    ^st_lwVMap,
+lwVMap :: struct {
+	next:    ^lwVMap,
+	prev:    ^lwVMap,
 	name:    cstring,
 	type:    lwuint,
 	dim:     lwint,
@@ -297,44 +262,44 @@ st_lwVMap :: struct {
 	val:     ^^lwfloat,
 }
 
-st_lwVMapPt :: struct {
+lwVMapPt :: struct {
 	vmap:  ^lwVMap,
 	index: lwint,
 }
 
-st_lwPoint :: struct {
-	pos:    [3]lwfloat,
+lwPoint :: struct {
+	pos:    LWFVector,
 	npols:  lwint,
 	pol:    ^lwint,
 	nvmaps: lwint,
 	vm:     ^lwVMapPt,
 }
 
-st_lwPolVert :: struct {
+lwPolVert :: struct {
 	index:  lwint,
-	norm:   [3]lwfloat,
+	norm:   LWFVector,
 	nvmaps: lwint,
 	vm:     ^lwVMapPt,
 }
 
-st_lwPolygon :: struct {
+lwPolygon :: struct {
 	surf:      ^lwSurface,
 	part:      lwint,
 	smoothgrp: lwint,
 	flags:     lwint,
-	type:      lwuint,
-	norm:      [3]lwfloat,
+	type:      polygon_types, // lwuint,
+	norm:      LWFVector,
 	nverts:    lwint,
 	v:         ^lwPolVert,
 }
 
-st_lwPointList :: struct {
+lwPointList :: struct {
 	count:  lwint,
 	offset: lwint,
 	pt:     ^lwPoint,
 }
 
-st_lwPolygonList :: struct {
+lwPolygonList :: struct {
 	count:   lwint,
 	offset:  lwint,
 	vcount:  lwint,
@@ -342,28 +307,28 @@ st_lwPolygonList :: struct {
 	pol:     ^lwPolygon,
 }
 
-st_lwLayer :: struct {
-	next:    ^st_lwLayer,
-	prev:    ^st_lwLayer,
+lwLayer :: struct {
+	next:    ^lwLayer,
+	prev:    ^lwLayer,
 	name:    cstring,
 	index:   lwint,
 	parent:  lwint,
 	flags:   lwint,
-	pivot:   [3]lwfloat,
-	bbox:    [6]lwfloat,
+	pivot:   LWFVector,
+	bbox:    [2]LWFVector, // [6]lwfloat,
 	point:   lwPointList,
 	polygon: lwPolygonList,
 	nvmaps:  lwint,
 	vmap:    ^lwVMap,
 }
 
-st_lwTagList :: struct {
+lwTagList :: struct {
 	count:  lwint,
 	offset: lwint,
 	tag:    ^cstring,
 }
 
-st_lwObject :: struct {
+lwObject :: struct {
 	layer:   ^lwLayer,
 	env:     ^lwEnvelope,
 	clip:    ^lwClip,

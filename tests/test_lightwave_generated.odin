@@ -27,7 +27,7 @@ verify_struct_sizes :: proc(t: ^testing.T) {
 	expect_size(t, lw.lwTexture, 208)
 	expect_size(t, lw.lwTParam, 16)
 	expect_size(t, lw.lwCParam, 24)
-	expect_size(t, lw.Glow, 20)
+	expect_size(t, lw.lwGlow, 20)
 	expect_size(t, lw.lwRMap, 32)
 	expect_size(t, lw.lwLine, 12)
 	expect_size(t, lw.lwSurface, 320)
