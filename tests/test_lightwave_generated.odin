@@ -4,9 +4,10 @@ import "core:testing"
 import ot "shared:ounit"
 import lw ".."
 
+expect_size :: ot.expect_size
+
 @(test)
 verify_struct_sizes :: proc(t: ^testing.T) {
-	using ot
 	expect_size(t, lw.lwNode, 24)
 	expect_size(t, lw.lwPlugin, 48)
 	expect_size(t, lw.lwKey, 56)

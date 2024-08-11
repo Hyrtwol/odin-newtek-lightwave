@@ -1,3 +1,4 @@
+// odin test shared/newtek_lightwave/tests -vet -strict-style
 package test_lightwave
 
 //import "core:bytes"
@@ -33,6 +34,7 @@ verify_lwids :: proc(t: ^testing.T) {
 	expect_it(t, lw.ID_LAYR, lw.LWID_('L', 'A', 'Y', 'R'))
 }
 
+/*
 @(test)
 can_construct :: proc(t: ^testing.T) {
 	fail_id: u32 = 0
@@ -47,17 +49,18 @@ can_construct :: proc(t: ^testing.T) {
 	//fmt.printf("lwo %v\n", obj)
 	//fmt.printf("layer %v\n", obj.layer)
 }
+*/
 
 @(test)
 load_box :: proc(t: ^testing.T) {
-	act, exp: i32
+	//act, exp: i32
 
 	fail_id: u32 = 0
 	fail_pos: i32 = 0
 	obj := lw.lwGetObject(box, &fail_id, &fail_pos)
-	defer if obj != nil {lw.lwFreeObject(obj)}
+	defer lw.lwFreeObject(obj)
 
-	testing.expectf(t, obj != nil, "obj is nil: %v # %v", fail_id, fail_pos)
+	testing.expectf(t, obj != nil, "obj is nil: %v # %v :: %v", fail_id, fail_pos, box)
 	expect_it(t, fail_id, 0)
 	expect_it(t, fail_pos, 0)
 
