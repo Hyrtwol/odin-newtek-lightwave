@@ -2,23 +2,29 @@ package lightwave
 
 foreign import lightwave "lightwave.lib"
 
-BEH_RESET :: 0
-BEH_CONSTANT :: 1
-BEH_REPEAT :: 2
-BEH_OSCILLATE :: 3
-BEH_OFFSET :: 4
-BEH_LINEAR :: 5
+lwBEH :: enum lwint {
+	BEH_RESET = 0,
+	BEH_CONSTANT = 1,
+	BEH_REPEAT = 2,
+	BEH_OSCILLATE = 3,
+	BEH_OFFSET = 4,
+	BEH_LINEAR = 5,
+}
 
-PROJ_PLANAR :: 0
-PROJ_CYLINDRICAL :: 1
-PROJ_SPHERICAL :: 2
-PROJ_CUBIC :: 3
-PROJ_FRONT :: 4
+lwPROJ :: enum lwint {
+	PROJ_PLANAR = 0,
+	PROJ_CYLINDRICAL = 1,
+	PROJ_SPHERICAL = 2,
+	PROJ_CUBIC = 3,
+	PROJ_FRONT = 4,
+}
 
-WRAP_NONE :: 0
-WRAP_EDGE :: 1
-WRAP_REPEAT :: 2
-WRAP_MIRROR :: 3
+lwWRAP :: enum lwint {
+	WRAP_NONE = 0,
+	WRAP_EDGE = 1,
+	WRAP_REPEAT = 2,
+	WRAP_MIRROR = 3,
+}
 
 lwNode :: struct {
 	next: ^lwNode,
@@ -55,7 +61,7 @@ lwEnvelope :: struct {
 	name:      cstring,
 	key:       ^lwKey,
 	nkeys:     lwint,
-	behavior:  [2]lwint,
+	behavior:  [2]lwBEH,
 	cfilter:   ^lwPlugin,
 	ncfilters: lwint,
 }

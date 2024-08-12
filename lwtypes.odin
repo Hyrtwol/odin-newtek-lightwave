@@ -3,8 +3,6 @@ package lightwave
 
 import _c "core:c/libc"
 
-// lwsdk\include\lwtypes.h
-
 lwint :: _c.int
 lwuint :: _c.uint
 lwshort :: _c.short
