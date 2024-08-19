@@ -1,16 +1,15 @@
 // odin test shared/newtek_lightwave/tests -vet -strict-style
 package test_lightwave
 
-//import "core:bytes"
-//import "core:fmt"
-//import "base:runtime"
-import "core:testing"
+import lw ".."
 import "core:path/filepath"
 import "core:strings"
-//import "shared:ounit"
-import lw ".."
+import "core:testing"
+import "shared:ounit"
 
-box := strings.clone_to_cstring(filepath.clean("shared/newtek_lightwave/data/models/box.lwo"))
+expect_size :: ounit.expect_size
+
+box := strings.clone_to_cstring(filepath.clean("../data/models/box.lwo"))
 
 @(private)
 expect_u32 :: proc(t: ^testing.T, act, exp: u32) {

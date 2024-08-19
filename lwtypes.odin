@@ -1,4 +1,4 @@
-// +vet
+#+vet
 package lightwave
 
 import _c "core:c/libc"
