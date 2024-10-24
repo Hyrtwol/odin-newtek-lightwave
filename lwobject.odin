@@ -362,215 +362,74 @@ AnonymousUnion1 :: struct #raw_union {
 
 @(default_calling_convention = "c")
 foreign lightwave {
-
-	@(link_name = "lwFreeLayer")
 	lwFreeLayer :: proc(layer: ^lwLayer) ---
-
-	@(link_name = "lwFreeObject")
 	lwFreeObject :: proc(object: ^lwObject) ---
-
-	@(link_name = "lwGetObject")
 	lwGetObject :: proc(filename: cstring, failID: ^lwuint, failpos: ^lwint) -> ^lwObject ---
-
-	@(link_name = "lwFreePoints")
 	lwFreePoints :: proc(point: ^lwPointList) ---
-
-	@(link_name = "lwFreePolygons")
 	lwFreePolygons :: proc(plist: ^lwPolygonList) ---
-
-	@(link_name = "lwGetPoints")
 	lwGetPoints :: proc(fp: ^FILE, cksize: lwint, point: ^lwPointList) -> lwint ---
-
-	@(link_name = "lwGetBoundingBox")
 	lwGetBoundingBox :: proc(point: ^lwPointList, bbox: ^lwfloat) ---
-
-	@(link_name = "lwAllocPolygons")
 	lwAllocPolygons :: proc(plist: ^lwPolygonList, npols: lwint, nverts: lwint) -> lwint ---
-
-	@(link_name = "lwGetPolygons")
 	lwGetPolygons :: proc(fp: ^FILE, cksize: lwint, plist: ^lwPolygonList, ptoffset: lwint) -> lwint ---
-
-	@(link_name = "lwGetPolyNormals")
 	lwGetPolyNormals :: proc(point: ^lwPointList, polygon: ^lwPolygonList) ---
-
-	@(link_name = "lwGetPointPolygons")
 	lwGetPointPolygons :: proc(point: ^lwPointList, polygon: ^lwPolygonList) -> lwint ---
-
-	@(link_name = "lwResolvePolySurfaces")
 	lwResolvePolySurfaces :: proc(polygon: ^lwPolygonList, tlist: ^lwTagList, surf: ^^lwSurface, nsurfs: ^lwint) -> lwint ---
-
-	@(link_name = "lwGetVertNormals")
 	lwGetVertNormals :: proc(point: ^lwPointList, polygon: ^lwPolygonList) ---
-
-	@(link_name = "lwFreeTags")
 	lwFreeTags :: proc(tlist: ^lwTagList) ---
-
-	@(link_name = "lwGetTags")
 	lwGetTags :: proc(fp: ^FILE, cksize: lwint, tlist: ^lwTagList) -> lwint ---
-
-	@(link_name = "lwGetPolygonTags")
 	lwGetPolygonTags :: proc(fp: ^FILE, cksize: lwint, tlist: ^lwTagList, plist: ^lwPolygonList) -> lwint ---
-
-	@(link_name = "lwFreeVMap")
 	lwFreeVMap :: proc(vmap: ^lwVMap) ---
-
-	@(link_name = "lwGetVMap")
 	lwGetVMap :: proc(fp: ^FILE, cksize: lwint, ptoffset: lwint, poloffset: lwint, perpoly: lwint) -> ^lwVMap ---
-
-	@(link_name = "lwGetPointVMaps")
 	lwGetPointVMaps :: proc(point: ^lwPointList, vmap: ^lwVMap) -> lwint ---
-
-	@(link_name = "lwGetPolyVMaps")
 	lwGetPolyVMaps :: proc(polygon: ^lwPolygonList, vmap: ^lwVMap) -> lwint ---
-
-	@(link_name = "lwFreeClip")
 	lwFreeClip :: proc(clip: ^lwClip) ---
-
-	@(link_name = "lwGetClip")
 	lwGetClip :: proc(fp: ^FILE, cksize: lwint) -> ^lwClip ---
-
-	@(link_name = "lwFindClip")
 	lwFindClip :: proc(list: ^lwClip, index: lwint) -> ^lwClip ---
-
-	@(link_name = "lwFreeEnvelope")
 	lwFreeEnvelope :: proc(env: ^lwEnvelope) ---
-
-	@(link_name = "lwGetEnvelope")
 	lwGetEnvelope :: proc(fp: ^FILE, cksize: lwint) -> ^lwEnvelope ---
-
-	@(link_name = "lwFindEnvelope")
 	lwFindEnvelope :: proc(list: ^lwEnvelope, index: lwint) -> ^lwEnvelope ---
-
-	@(link_name = "lwEvalEnvelope")
 	lwEvalEnvelope :: proc(env: ^lwEnvelope, time: lwfloat) -> lwfloat ---
-
-	@(link_name = "lwFreePlugin")
 	lwFreePlugin :: proc(p: ^lwPlugin) ---
-
-	@(link_name = "lwFreeTexture")
 	lwFreeTexture :: proc(t: ^lwTexture) ---
-
-	@(link_name = "lwFreeSurface")
 	lwFreeSurface :: proc(surf: ^lwSurface) ---
-
-	@(link_name = "lwGetTHeader")
 	lwGetTHeader :: proc(fp: ^FILE, hsz: lwint, tex: ^lwTexture) -> lwint ---
-
-	@(link_name = "lwGetTMap")
 	lwGetTMap :: proc(fp: ^FILE, tmapsz: lwint, tmap: ^lwTMap) -> lwint ---
-
-	@(link_name = "lwGetImageMap")
 	lwGetImageMap :: proc(fp: ^FILE, rsz: lwint, tex: ^lwTexture) -> lwint ---
-
-	@(link_name = "lwGetProcedural")
 	lwGetProcedural :: proc(fp: ^FILE, rsz: lwint, tex: ^lwTexture) -> lwint ---
-
-	@(link_name = "lwGetGradient")
 	lwGetGradient :: proc(fp: ^FILE, rsz: lwint, tex: ^lwTexture) -> lwint ---
-
-	@(link_name = "lwGetTexture")
 	lwGetTexture :: proc(fp: ^FILE, bloksz: lwint, type: lwuint) -> ^lwTexture ---
-
-	@(link_name = "lwGetShader")
 	lwGetShader :: proc(fp: ^FILE, bloksz: lwint) -> ^lwPlugin ---
-
-	@(link_name = "lwGetSurface")
 	lwGetSurface :: proc(fp: ^FILE, cksize: lwint) -> ^lwSurface ---
-
-	@(link_name = "lwDefaultSurface")
 	lwDefaultSurface :: proc() -> ^lwSurface ---
-
-	@(link_name = "lwGetSurface5")
 	lwGetSurface5 :: proc(fp: ^FILE, cksize: lwint, obj: ^lwObject) -> ^lwSurface ---
-
-	@(link_name = "lwGetPolygons5")
 	lwGetPolygons5 :: proc(fp: ^FILE, cksize: lwint, plist: ^lwPolygonList, ptoffset: lwint) -> lwint ---
-
-	@(link_name = "lwGetObject5")
 	lwGetObject5 :: proc(filename: cstring, failID: ^lwuint, failpos: ^lwint) -> ^lwObject ---
-
-	@(link_name = "lwListFree")
 	lwListFree :: proc(list: rawptr, unamed0: #type proc(unamed0: rawptr)) ---
-
-	@(link_name = "lwListAdd")
 	lwListAdd :: proc(list: ^rawptr, node: rawptr) ---
-
-	@(link_name = "lwListInsert")
 	lwListInsert :: proc(vlist: ^rawptr, vitem: rawptr, unamed0: #type proc(unamed0: rawptr, unamed1: rawptr) -> lwint) ---
-
-	@(link_name = "dot")
 	dot :: proc(a: ^lwfloat, b: ^lwfloat) -> lwfloat ---
-
-	@(link_name = "cross")
 	cross :: proc(a: ^lwfloat, b: ^lwfloat, c: ^lwfloat) ---
-
-	@(link_name = "normalize")
 	normalize :: proc(v: ^lwfloat) ---
-
-	@(link_name = "set_flen")
 	set_flen :: proc(i: lwint) ---
-
-	@(link_name = "get_flen")
 	get_flen :: proc() -> lwint ---
-
-	@(link_name = "getbytes")
 	getbytes :: proc(fp: ^FILE, size: lwint) -> rawptr ---
-
-	@(link_name = "skipbytes")
 	skipbytes :: proc(fp: ^FILE, n: lwint) ---
-
-	@(link_name = "getI1")
 	getI1 :: proc(fp: ^FILE) -> lwint ---
-
-	@(link_name = "getI2")
 	getI2 :: proc(fp: ^FILE) -> lwshort ---
-
-	@(link_name = "getI4")
 	getI4 :: proc(fp: ^FILE) -> lwint ---
-
-	@(link_name = "getU1")
 	getU1 :: proc(fp: ^FILE) -> lwchar ---
-
-	@(link_name = "getU2")
 	getU2 :: proc(fp: ^FILE) -> lwushort ---
-
-	@(link_name = "getU4")
 	getU4 :: proc(fp: ^FILE) -> lwuint ---
-
-	@(link_name = "getVX")
 	getVX :: proc(fp: ^FILE) -> lwint ---
-
-	@(link_name = "getF4")
 	getF4 :: proc(fp: ^FILE) -> lwfloat ---
-
-	@(link_name = "getS0")
 	getS0 :: proc(fp: ^FILE) -> cstring ---
-
-	@(link_name = "sgetI1")
 	sgetI1 :: proc(bp: ^^lwchar) -> lwint ---
-
-	@(link_name = "sgetI2")
 	sgetI2 :: proc(bp: ^^lwchar) -> lwshort ---
-
-	@(link_name = "sgetI4")
 	sgetI4 :: proc(bp: ^^lwchar) -> lwint ---
-
-	@(link_name = "sgetU1")
 	sgetU1 :: proc(bp: ^^lwchar) -> lwchar ---
-
-	@(link_name = "sgetU2")
 	sgetU2 :: proc(bp: ^^lwchar) -> lwushort ---
-
-	@(link_name = "sgetU4")
 	sgetU4 :: proc(bp: ^^lwchar) -> lwuint ---
-
-	@(link_name = "sgetVX")
 	sgetVX :: proc(bp: ^^lwchar) -> lwint ---
-
-	@(link_name = "sgetF4")
 	sgetF4 :: proc(bp: ^^lwchar) -> lwfloat ---
-
-	@(link_name = "sgetS0")
 	sgetS0 :: proc(bp: ^^lwchar) -> cstring ---
-
 }
