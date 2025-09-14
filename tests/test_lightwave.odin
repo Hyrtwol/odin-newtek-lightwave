@@ -9,8 +9,6 @@ import "shared:ounit"
 
 expect_size :: ounit.expect_size
 
-box := strings.clone_to_cstring(filepath.clean("../data/models/box.lwo"))
-
 @(private)
 expect_u32 :: proc(t: ^testing.T, act, exp: u32) {
 	testing.expectf(t, act == exp, "0x%8X (should be: 0x8X)", act, exp)
@@ -52,6 +50,8 @@ can_construct :: proc(t: ^testing.T) {
 
 @(test)
 load_box :: proc(t: ^testing.T) {
+	box := strings.clone_to_cstring(filepath.clean("../data/models/box.lwo", context.temp_allocator), context.temp_allocator)
+
 	fail_id: u32 = 0
 	fail_pos: i32 = 0
 	obj := lw.lwGetObject(box, &fail_id, &fail_pos)

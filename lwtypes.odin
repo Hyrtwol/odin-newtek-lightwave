@@ -32,7 +32,7 @@ LWDMatrix4 :: matrix[4, 4]lwdouble
 LWID :: lwuint
 
 LWID_ :: #force_inline proc(a, b, c, d: lwuint) -> LWID {
-	return (lwuint(a) << 24) | (lwuint(b) << 16) | (lwuint(c) << 8) | lwuint(d)
+	return (LWID(lwbyte(a)) << 24) | (LWID(lwbyte(b)) << 16) | (LWID(lwbyte(c)) << 8) | LWID(lwbyte(d))
 }
 
 LWCommandCode :: lwint
