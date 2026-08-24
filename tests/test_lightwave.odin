@@ -2,7 +2,7 @@
 package test_lightwave
 
 import lw ".."
-import "core:path/filepath"
+import "core:os"
 import "core:strings"
 import "core:testing"
 import "shared:ounit"
@@ -50,7 +50,8 @@ can_construct :: proc(t: ^testing.T) {
 
 @(test)
 load_box :: proc(t: ^testing.T) {
-	box := strings.clone_to_cstring(filepath.clean("../data/models/box.lwo", context.temp_allocator), context.temp_allocator)
+	path := os.clean_path("../data/models/box.lwo", context.temp_allocator) or_else panic("os.clean_path")
+	box := strings.clone_to_cstring(path, context.temp_allocator) or_else panic("strings.clone_to_cstring")
 
 	fail_id: u32 = 0
 	fail_pos: i32 = 0
